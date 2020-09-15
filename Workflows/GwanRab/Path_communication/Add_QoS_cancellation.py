@@ -16,23 +16,8 @@ The allowed types are:
  Add as many variables as needed
 '''
 dev_var = Variables()
-dev_var.add('source_me', var_type='Device')
-dev_var.add('src_setup', var_type='String')
-dev_var.add('source_me_stby', var_type='Device')
-dev_var.add('destination_me', var_type='Device')
-dev_var.add('dst_setup', var_type='String')
-dev_var.add('dst_me_stby', var_type='Device')
-dev_var.add('communication_id', var_type='String')
-dev_var.add('bw_cir', var_type='Integer')
-dev_var.add('bw_bc', var_type='Integer')
-dev_var.add('bw_be', var_type='Integer')
-dev_var.add('source_if_id', var_type='String')
-dev_var.add('destination_if_id', var_type='String')
-dev_var.add('srcnet', var_type='String')
-dev_var.add('dstnet', var_type='String')
-dev_var.add('source_gw', var_type='String')
-dev_var.add('destination_gw', var_type='String')
-
+dev_var.add('var_name', var_type='String')
+dev_var.add('var_name2', var_type='Integer')
 
 '''
 context => Service Context variable per Service Instance
@@ -44,7 +29,7 @@ Update context array [add/update/delete variables] as per requirement
 ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
-
+context['var_name2'] = int(context['var_name2']) + 1
 
 '''
 Format of the Task response :
