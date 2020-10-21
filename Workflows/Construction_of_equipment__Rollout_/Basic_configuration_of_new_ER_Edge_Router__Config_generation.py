@@ -51,7 +51,7 @@ NOTE : For 'wo_newparams', always pass "context" [whether wo_status is ENDED/FAI
 The response "ret" should be echoed from the Task "print(ret)" which is read by Orchestration Engine
 In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
 '''
-ret = MSA_API.process_content('ENDED', f'STATUS OK: {context}', context, True)
+ret = MSA_API.process_content('ENDED', f'Generate config for: {context["construction_name"]}', context, True)
 print(ret)
 
 
