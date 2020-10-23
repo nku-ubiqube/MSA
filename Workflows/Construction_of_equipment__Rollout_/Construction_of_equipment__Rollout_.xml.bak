@@ -27,6 +27,15 @@
       <displayName>Notification</displayName>
     </task>
   </process>
+  <process name="Process/Construction_of_equipment__Rollout_/Delete">
+    <displayName>Delete</displayName>
+    <type>DELETE</type>
+    <visibility>0</visibility>
+    <task name="Delete_Delete_Instance.py">
+      <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
+      <displayName>Delete Instance</displayName>
+    </task>
+  </process>
   <process name="Process/Construction_of_equipment__Rollout_/Testing_of_new_ER_after_basic_configuration">
     <displayName>Testing of new ER after basic configuration</displayName>
     <type>UPDATE</type>
@@ -51,15 +60,6 @@
     <task name="Rollback_of_ER_establishment_Notification.py">
       <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
       <displayName>Notification</displayName>
-    </task>
-  </process>
-  <process name="Process/Construction_of_equipment__Rollout_/Delete">
-    <displayName>Delete</displayName>
-    <type>DELETE</type>
-    <visibility>0</visibility>
-    <task name="Delete_Delete_Instance.py">
-      <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
-      <displayName>Delete Instance</displayName>
     </task>
   </process>
   <information>
