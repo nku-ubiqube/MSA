@@ -1,14 +1,12 @@
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from datetime import datetime
-import time
 import json
 import requests
 
 dev_var = Variables()
 dev_var.add('construction_name', var_type='String')
 dev_var.add('additional_device_name', var_type='Device')
-# dev_var.add('urlpath', var_type='String')
 context = Variables.task_call(dev_var)
 
 # url = context['urlpath']
@@ -25,7 +23,7 @@ url = "http://172.20.0.4:9200/ubilogs-"+date+"/_doc"
 name = context['construction_name']
 device_id = context['additional_device_name']
 
-payload = {"rawlog": ""+name+" Configured", "device_id": ""+device_id+"", "date": ""+time1+"", "customer_ref": "TyrellCorp", "severity": "5", "type": "NOTIFICATION", "subtype": "WF"}
+payload = {"rawlog": ""+name+" Base config input result: OK", "device_id": ""+device_id+"", "date": ""+time1+"", "customer_ref": "TyrellCorp", "severity": "5", "type": "NOTIFICATION", "subtype": "WF"}
 
 headers = {'content-type': 'application/json'}
 
