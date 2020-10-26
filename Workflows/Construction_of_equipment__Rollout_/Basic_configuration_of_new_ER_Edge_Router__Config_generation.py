@@ -19,18 +19,10 @@ dev_var = Variables()
 dev_var.add('construction_name', var_type='String')
 dev_var.add('additional_device_name', var_type='Device')
 dev_var.add('additional_device_ip', var_type='String')
+dev_var.add('network_prefix', var_type='Integer')
 dev_var.add('adjacent_cr_name', var_type='String')
 dev_var.add('adjacent_cr_ip', var_type='String')
 
-'''
-context => Service Context variable per Service Instance
-All the user-inputs of Tasks are automatically stored in context
-Also, any new variables should be stored in context which are used across Service Instance
-The variables stored in context can be used across all the Tasks and Processes of a particular Service
-Update context array [add/update/delete variables] as per requirement
-
-ENTER YOUR CODE HERE
-'''
 context = Variables.task_call(dev_var)
 
 '''
@@ -51,6 +43,31 @@ NOTE : For 'wo_newparams', always pass "context" [whether wo_status is ENDED/FAI
 The response "ret" should be echoed from the Task "print(ret)" which is read by Orchestration Engine
 In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
 '''
+'''
+router Name 2
+ip address 3 {NETMASK*} 
+neighbor 6
+'''
+device_id = context['additional_device_name']
+device_ip = context['additional_device_ip']
+network_prefix = context['network_prefix']
+neighbor_ip = context['adjacent_cr_ip']
+
+if int(network_prefix) == 8:
+  netmask = "255.0.0.0"
+elif int(network_prefix) == 16:
+  netmask = "255.255.0.0"
+else:
+  netmask = "255.255.255.0"
+
+f = open("/opt/fmc_repository/Datafiles/basic.conf", "w")
+f.write("router Name "+device_id+"")
+f.write("\n")
+f.write("ip address "+device_ip+" "+netmask+"")
+f.write("\n")
+f.write("neighbor "+neighbor_ip+"")
+f.close()
+
 ret = MSA_API.process_content('ENDED', f'Generate config for: {context["construction_name"]}', context, True)
 print(ret)
 
