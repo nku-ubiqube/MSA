@@ -3,6 +3,7 @@ Visit http://[YOUR_MSA_URL]/msa_sdk/ to see what you can import.
 '''
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
+from msa_sdk.order import Order
 
 '''
 List all the parameters required by the task
@@ -25,29 +26,8 @@ dev_var.add('adjacent_cr_ip', var_type='String')
 
 context = Variables.task_call(dev_var)
 
-'''
-Format of the Task response :
-JSON format : {"wo_status":"status","wo_comment":"comment","wo_newparams":{json_body}}
-wo_status : ENDED [Green color] or FAILED [Red color] or WARNING [Orange color]
-			-> While the Task is Running [means no response returned yet], task status is RUNNING [Blue color]
-         -> When status is returned as FAILED, the Orchestration Engine stops the Process Execution from this Task
-wo_comment : Appropriate Comment to display as per the success/failure of the Task
-wo_newparams : json_body parameters returned from this Task
+file_system_device_id = "125"
 
-Function process_content() takes care of Creating a Json response from inputs
-This function definiton can be found at : http://[YOUR_MSA_URL]/msa_sdk/msa_api.html#msa_sdk.msa_api.MSA_API.process_content
-NOTE : For 'wo_newparams', always pass "context" [whether wo_status is ENDED/FAILED/WARNING to preserve it across Service Instance]
-    -> Last argument "true" mentions whether the json_response to be Logged in the logfile : /opt/jboss/latest/logs/process.log
-    -> If not passed, it's "false"
-
-The response "ret" should be echoed from the Task "print(ret)" which is read by Orchestration Engine
-In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
-'''
-'''
-router Name 2
-ip address 3 {NETMASK*} 
-neighbor 6
-'''
 device_id = context['additional_device_name']
 device_ip = context['additional_device_ip']
 network_prefix = context['network_prefix']
@@ -60,15 +40,35 @@ elif int(network_prefix) == 16:
 else:
   netmask = "255.255.255.0"
 
-f = open("/opt/fmc_repository/Datafiles/basic.conf", "w")
+  
+'''f = open("/opt/fmc_repository/Datafiles/basic.conf", "w")
 f.write("router Name "+device_id+"")
 f.write("\n")
 f.write("ip address "+device_ip+" "+netmask+"")
 f.write("\n")
 f.write("neighbor "+neighbor_ip+"")
 f.close()
+'''
 
-ret = MSA_API.process_content('ENDED', f'Generate config for: {context["construction_name"]}', context, True)
+# build the Microservice JSON params for the order
+micro_service_vars_array = {"object_id": device_id,
+                            "device_ip": device_ip,
+                            "netmask": netmask,
+                            "neighbor": neighbor_ip
+                            }
+
+object_id = device_id
+
+basic = {"basic_conf": {object_id: micro_service_vars_array}}
+
+# call the CREATE for simple_firewall MS for each device
+order = Order(file_system_device_id)
+order.command_execute('UPDATE', basic)
+
+if order.response.ok:
+  ret = MSA_API.process_content('ENDED', f'Generated config for: {context["construction_name"]}', context, True)
+else:
+  ret = MSA_API.process_content('FAILED', f'Config generation for: {context["construction_name"]} failed', context, True)
 print(ret)
 
 
