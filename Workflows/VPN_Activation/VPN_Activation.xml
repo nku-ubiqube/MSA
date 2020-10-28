@@ -12,7 +12,7 @@
   <process name="Process/VPN_Activation/New_VPN">
     <displayName>New VPN</displayName>
     <type>CREATE</type>
-    <visibility>0</visibility>
+    <visibility>5</visibility>
     <task name="New_VPN_Create_New_VPN_Instance.py">
       <processPath>/opt/fmc_repository/Process/VPN_Activation</processPath>
       <displayName>Create New VPN Instance</displayName>
@@ -21,7 +21,7 @@
   <process name="Process/VPN_Activation/Allocate_VLAN-ID">
     <displayName>Allocate VLAN-ID</displayName>
     <type>UPDATE</type>
-    <visibility>0</visibility>
+    <visibility>5</visibility>
     <task name="Allocate_VLAN-ID_Get_VLAN_ID.py">
       <processPath>/opt/fmc_repository/Process/VPN_Activation</processPath>
       <displayName>Get VLAN ID</displayName>
@@ -38,7 +38,7 @@
   <process name="Process/VPN_Activation/Activate_New_VPN">
     <displayName>Activate New VPN</displayName>
     <type>UPDATE</type>
-    <visibility>5</visibility>
+    <visibility>0</visibility>
     <task name="Activate_New_VPN_Generate_Config.py">
       <processPath>/opt/fmc_repository/Process/VPN_Activation</processPath>
       <displayName>Generate Config</displayName>
@@ -47,7 +47,7 @@
   <process name="Process/VPN_Activation/Delete_Instance">
     <displayName>Delete Instance</displayName>
     <type>DELETE</type>
-    <visibility>5</visibility>
+    <visibility>0</visibility>
     <task name="Delete_Instance_Delete.py">
       <processPath>/opt/fmc_repository/Process/VPN_Activation</processPath>
       <displayName>Delete</displayName>
@@ -59,7 +59,7 @@
     <displayField>vpn_name</displayField>
     <serviceTaskType>python</serviceTaskType>
     <order>10000</order>
-    <visibility>0</visibility>
+    <visibility>5</visibility>
     <name>VPN Activation</name>
     <group/>
   </information>

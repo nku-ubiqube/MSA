@@ -26,22 +26,25 @@ dev_var.add('adjacent_cr_ip', var_type='String')
 
 context = Variables.task_call(dev_var)
 
-file_system_device_id = "125"
+# read the ID of the selected managed entity
+device_id = context['additional_device_name']
+# extract the database ID
+devicelongid = device_id[-3:]
 
 device_id = context['additional_device_name']
 device_ip = context['additional_device_ip']
 network_prefix = context['network_prefix']
 neighbor_ip = context['adjacent_cr_ip']
 
+'''
 if int(network_prefix) == 8:
   netmask = "255.0.0.0"
 elif int(network_prefix) == 16:
   netmask = "255.255.0.0"
 else:
   netmask = "255.255.255.0"
-
   
-'''f = open("/opt/fmc_repository/Datafiles/basic.conf", "w")
+f = open("/opt/fmc_repository/Datafiles/basic.conf", "w")
 f.write("router Name "+device_id+"")
 f.write("\n")
 f.write("ip address "+device_ip+" "+netmask+"")
@@ -53,7 +56,7 @@ f.close()
 # build the Microservice JSON params for the order
 micro_service_vars_array = {"object_id": device_id,
                             "device_ip": device_ip,
-                            "netmask": netmask,
+                            "prefix": network_prefix,
                             "neighbor": neighbor_ip
                             }
 
@@ -62,7 +65,7 @@ object_id = device_id
 basic = {"basic_conf": {object_id: micro_service_vars_array}}
 
 # call the CREATE for simple_firewall MS for each device
-order = Order(file_system_device_id)
+order = Order(devicelongid)
 order.command_execute('UPDATE', basic)
 
 if order.response.ok:

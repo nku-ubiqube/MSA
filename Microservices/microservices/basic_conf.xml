@@ -5,7 +5,7 @@
     <displayField>object_id</displayField>
     <serviceTaskType/>
     <order>0</order>
-    <visibility>0</visibility>
+    <visibility>5</visibility>
     <configType>cli</configType>
     <createTemplateId/>
     <createTemplateObject/>
@@ -29,10 +29,20 @@
     <variable displayName="Device IP" name="params.device_ip" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="true" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="Netmask" name="params.netmask" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="true" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="Neighbor" name="params.neighbor" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="true" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="Prefix" name="params.prefix" startIncrement="0" type="Integer" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="4" increment="0" refServiceURI="" keepOnImport="true" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
   <command name="IMPORT">
     <operation>cat /tmp/basic.conf</operation>
+    <post_template>{if $params.netmask==&quot;255.255.255.0&quot;}
+{assign_object_variable var=&quot;prefix&quot; value=&quot;24&quot;}
+{/if}
+{if $params.netmask==&quot;255.255.0.0&quot;}
+{assign_object_variable var=&quot;prefix&quot; value=&quot;16&quot;}
+{/if}
+{if $params.netmask==&quot;255.0.0.0&quot;}
+{assign_object_variable var=&quot;prefix&quot; value=&quot;8&quot;}
+{/if}</post_template>
     <parser>
       <section>
         <regexp>@router Name (?&lt;object_id&gt;\S+)@</regexp>
@@ -53,13 +63,25 @@
     </parser>
   </command>
   <command name="UPDATE">
-    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
+    <operation>{if $params.prefix == &quot;24&quot; }{$params.netmask=&quot;255.255.255.0&quot;}
+{/if}
+{if $params.prefix == &quot;16&quot; }{$params.netmask=&quot;255.255.0.0&quot;}
+{/if}
+{if $params.prefix == &quot;8&quot; }{$params.netmask=&quot;255.0.0.0&quot;}
+{/if}
+echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
 echo &quot;ip address {$params.device_ip} {$params.netmask}&quot; &gt;&gt; /tmp/basic.conf
 echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic.conf</operation>
   </command>
   <command name="CONSTRAINT"/>
   <command name="CREATE">
-    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
+    <operation>{if $params.prefix == &quot;24&quot; }{$params.netmask=&quot;255.255.255.0&quot;}
+{/if}
+{if $params.prefix == &quot;16&quot; }{$params.netmask=&quot;255.255.0.0&quot;}
+{/if}
+{if $params.prefix == &quot;8&quot; }{$params.netmask=&quot;255.0.0.0&quot;}
+{/if}
+echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
 echo &quot;ip address {$params.device_ip} {$params.netmask}&quot; &gt;&gt; /tmp/basic.conf
 echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic.conf</operation>
   </command>

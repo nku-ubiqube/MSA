@@ -10,17 +10,17 @@ file_system_device_id = "125"
 
 order = Order(file_system_device_id)
 order.command_execute('IMPORT', {"VLAN_Database":"0"})
-vlan_database = json.loads(order.content.decode())
+vlan_database = order.command_objects_instances("VLAN_Database")
 
-txt = vlan_database['message']
-
-for vlan in range(255):
-  pattern = str(vlan)
-  data = txt.find(""+pattern+"")
-  if data == -1:
-    break
+vlan = 0
+for i in range(1,256):
+  if str(i) in vlan_database:
+    continue
+  vlan = str(i)
+  break
 
 context['vlan_id'] = vlan 
+
 
 ret = MSA_API.process_content('ENDED', f'Available VLAN-ID: {vlan}', context, True)
 print(ret)

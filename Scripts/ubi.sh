@@ -16,4 +16,6 @@ echo "--------------------------------------------------"
 
 #curl --insecure -H 'Accept: application/json' -H "Authorization: Bearer $key" -XGET https://127.0.0.1/ubi-api-rest/orchestration/BLRA6/service/instance | python -m json.tool
 
-curl --insecure -H 'Accept: application/json' -H "Authorization: Bearer $key" -XGET https://127.0.0.1/ubi-api-rest/orchestration/v1/BLRA6/workflow/details?serviceName=Process/Construction_of_equipment__Rollout_/Construction_of_equipment__Rollout_.xml | python -m json.tool
+#curl --insecure -H 'Accept: application/json' -H "Authorization: Bearer $key" -XGET https://127.0.0.1/ubi-api-rest/orchestration/v1/BLRA6/workflow/details?serviceName=Process/Construction_of_equipment__Rollout_/Construction_of_equipment__Rollout_.xml | python -m json.tool
+
+curl --insecure -H 'Accept: application/json' -H "Authorization: Bearer $key" -XGET https://127.0.0.1/ubi-api-rest/orchestration/v1/BLRA6/workflow/details?serviceName=Process%2FConstruction_of_equipment__Rollout_%2FConstruction_of_equipment__Rollout_ | python -m json.tool

@@ -15,7 +15,7 @@ time1 = dateTimeObj.strftime(format)
 format = "%Y-%m-%d"
 date = dateTimeObj.strftime(format)
 
-url = "http://172.20.0.4:9200/ubilogs-"+date+"/_doc"
+url = "http://msa_es:9200/ubilogs-"+date+"/_doc"
 
 name = context['vpn_name']
 vlan_id = context['vlan_id']
