@@ -16,6 +16,9 @@ case "$answer" in
  db) docker exec -it quickstart_db_1 bash;;
  es) docker exec -it quickstart_msa_es_1 bash;;
  linux) docker exec -it quickstart_linux_me_1 bash;;
+ linux2) docker exec -it quickstart_linux_me_2_1 bash;;
+ linux3) docker exec -it quickstart_linux_me_3_1 bash;;
+ linux4) docker exec -it quickstart_linux_me_4_1 bash;;
  me) docker exec -it quickstart_linux_me_1 bash;;
  camunda) docker exec -it quickstart_camunda_1 bash;;
  exit) exit;;
