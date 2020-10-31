@@ -7,3 +7,5 @@ context = Variables.task_call(dev_var)
 
 ret = MSA_API.process_content('ENDED', f'Workflow instance created', context, True)
 print(ret)
+
+# END OF FILE

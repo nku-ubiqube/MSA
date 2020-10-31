@@ -5,7 +5,7 @@
     <displayField>object_id</displayField>
     <serviceTaskType/>
     <order>0</order>
-    <visibility>0</visibility>
+    <visibility>5</visibility>
     <configType>cli</configType>
     <createTemplateId/>
     <createTemplateObject/>
@@ -14,7 +14,7 @@
     <importIfMandatoryPresent>false</importIfMandatoryPresent>
     <maxInstances>0</maxInstances>
     <relatedObjects/>
-    <name>basic_conf</name>
+    <name>basic_conf_CUSTOM</name>
     <group>Default</group>
     <importonce>false</importonce>
     <importrank>0</importrank>
@@ -39,16 +39,8 @@
   </variables>
   <example/>
   <command name="IMPORT">
-    <operation>cat /tmp/basic.conf</operation>
-    <post_template>{if $params.netmask==&quot;255.255.255.0&quot;}
-{assign_object_variable var=&quot;prefix&quot; value=&quot;24&quot;}
-{/if}
-{if $params.netmask==&quot;255.255.0.0&quot;}
-{assign_object_variable var=&quot;prefix&quot; value=&quot;16&quot;}
-{/if}
-{if $params.netmask==&quot;255.0.0.0&quot;}
-{assign_object_variable var=&quot;prefix&quot; value=&quot;8&quot;}
-{/if}</post_template>
+    <operation>cat /tmp/basic_CUSTOM.conf</operation>
+    <post_template></post_template>
     <parser>
       <section>
         <regexp>@router Name (?&lt;object_id&gt;\S+)@</regexp>
@@ -69,30 +61,18 @@
     </parser>
   </command>
   <command name="UPDATE">
-    <operation>{if $params.prefix == &quot;24&quot; }{$params.netmask=&quot;255.255.255.0&quot;}
-{/if}
-{if $params.prefix == &quot;16&quot; }{$params.netmask=&quot;255.255.0.0&quot;}
-{/if}
-{if $params.prefix == &quot;8&quot; }{$params.netmask=&quot;255.0.0.0&quot;}
-{/if}
-echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
-echo &quot;ip address {$params.device_ip} {$params.netmask}&quot; &gt;&gt; /tmp/basic.conf
-echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic.conf</operation>
+    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic_CUSTOM.conf
+echo &quot;ip address {$params.device_ip}/{$params.prefix}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf
+echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf</operation>
   </command>
   <command name="CONSTRAINT"/>
   <command name="CREATE">
-    <operation>{if $params.prefix == &quot;24&quot; }{$params.netmask=&quot;255.255.255.0&quot;}
-{/if}
-{if $params.prefix == &quot;16&quot; }{$params.netmask=&quot;255.255.0.0&quot;}
-{/if}
-{if $params.prefix == &quot;8&quot; }{$params.netmask=&quot;255.0.0.0&quot;}
-{/if}
-echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
-echo &quot;ip address {$params.device_ip} {$params.netmask}&quot; &gt;&gt; /tmp/basic.conf
-echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic.conf</operation>
+    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic_CUSTOM.conf
+echo &quot;ip address {$params.device_ip}/{$params.prefix}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf
+echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf</operation>
   </command>
   <command name="DELETE">
-    <operation>echo &quot;&quot; &gt; /tmp/basic.conf</operation>
+    <operation>echo &quot;&quot; &gt; /tmp/basic_CUSTOM.conf</operation>
   </command>
   <command name="READ"/>
   <command name="LIST"/>

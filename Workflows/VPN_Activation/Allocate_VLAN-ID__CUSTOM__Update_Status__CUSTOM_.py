@@ -14,15 +14,15 @@ micro_service_vars_array = {"object_id": context["vlan_id"],
                            }
 object_id = context["vlan_id"]
 
-vlan_database = {"VLAN_Database": {object_id: micro_service_vars_array}}
+vlan_database = {"VLAN_Database_CUSTOM": {object_id: micro_service_vars_array}}
 
 # call the CREATE for simple_firewall MS for each device
 order = Order(file_system_device_id)
 order.command_execute('CREATE', vlan_database)
 
 if order.response.ok:
-  ret = MSA_API.process_content('ENDED', f'VLAN Database updated: {context["vlan_id"]}', context, True)
+  ret = MSA_API.process_content('ENDED', f'VLAN Database updated: {context["vlan_id"]} (CUSTOM)', context, True)
 else:
-  ret = MSA_API.process_content('FAILED', f'VLAN Database update for: {context["vlan_id"]} failed', context, True)
+  ret = MSA_API.process_content('FAILED', f'VLAN Database update for: {context["vlan_id"]} failed (CUSTOM)', context, True)
 
 print(ret)

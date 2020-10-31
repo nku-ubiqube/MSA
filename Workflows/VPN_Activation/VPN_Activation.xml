@@ -57,10 +57,27 @@
       <displayName>Delete</displayName>
     </task>
   </process>
+  <process name="Process/VPN_Activation/Allocate_VLAN-ID__CUSTOM_">
+    <displayName>Allocate VLAN-ID (CUSTOM)</displayName>
+    <type>UPDATE</type>
+    <visibility>0</visibility>
+    <task name="Allocate_VLAN-ID__CUSTOM__Get_VLAN_ID__CUSTOM_.py">
+      <processPath>/opt/fmc_repository/Process/VPN_Activation</processPath>
+      <displayName>Get VLAN ID (CUSTOM)</displayName>
+    </task>
+    <task name="Allocate_VLAN-ID__CUSTOM__Update_Status__CUSTOM_.py">
+      <processPath>/opt/fmc_repository/Process/VPN_Activation</processPath>
+      <displayName>Update Status (CUSTOM)</displayName>
+    </task>
+    <task name="Allocate_VLAN-ID__CUSTOM__Notify__CUSTOM_.py">
+      <processPath>/opt/fmc_repository/Process/VPN_Activation</processPath>
+      <displayName>Notify (CUSTOM)</displayName>
+    </task>
+  </process>
   <information>
     <icon/>
     <description/>
-    <displayField>vpn_name</displayField>
+    <displayField>service_id</displayField>
     <serviceTaskType>python</serviceTaskType>
     <order>10000</order>
     <visibility>0</visibility>

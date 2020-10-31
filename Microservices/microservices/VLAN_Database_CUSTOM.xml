@@ -14,7 +14,7 @@
     <importIfMandatoryPresent>false</importIfMandatoryPresent>
     <maxInstances>0</maxInstances>
     <relatedObjects/>
-    <name>VLAN_Database</name>
+    <name>VLAN_Database_CUSTOM</name>
     <group>Default</group>
     <importonce>false</importonce>
     <importrank>0</importrank>
@@ -25,13 +25,13 @@
     <sortvariable>param._order</sortvariable>
   </information>
   <variables frozen="0">
-    <variable displayName="ID" name="params.object_id" startIncrement="0" type="Integer" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="true" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="ID" name="params.object_id" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="VPN Name" name="params.vpn_name" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="1" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="Status" name="params.status" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="2" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" default="Reserved" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
   <command name="IMPORT">
-    <operation>for i  in `ls /tmp/VLAN_Database` ; do echo VLAN:$i; cat /tmp/VLAN_Database/$i; done</operation>
+    <operation>for i  in `ls -r /tmp/VLAN_Database_CUSTOM` ; do echo VLAN:$i; cat /tmp/VLAN_Database_CUSTOM/$i; done</operation>
     <parser>
       <section>
         <regexp>@VLAN:(?&lt;object_id&gt;\d+)@</regexp>
@@ -52,18 +52,18 @@
     </parser>
   </command>
   <command name="UPDATE">
-    <operation>touch /tmp/VLAN_Database/{$params.object_id}
-echo &quot;VPN Name : {$params.vpn_name}&quot; &gt; /tmp/VLAN_Database/{$params.object_id}
-echo &quot;Status : {$params.status}&quot; &gt;&gt; /tmp/VLAN_Database/{$params.object_id}</operation>
+    <operation>touch /tmp/VLAN_Database_CUSTOM/{$params.object_id}
+echo &quot;VPN Name : {$params.vpn_name}&quot; &gt; /tmp/VLAN_Database_CUSTOM/{$params.object_id}
+echo &quot;Status : {$params.status}&quot; &gt;&gt; /tmp/VLAN_Database_CUSTOM/{$params.object_id}</operation>
   </command>
   <command name="CONSTRAINT"/>
   <command name="CREATE">
-    <operation>touch /tmp/VLAN_Database/{$params.object_id}
-echo &quot;VPN Name : {$params.vpn_name}&quot; &gt; /tmp/VLAN_Database/{$params.object_id}
-echo &quot;Status : {$params.status}&quot; &gt;&gt; /tmp/VLAN_Database/{$params.object_id}</operation>
+    <operation>touch /tmp/VLAN_Database_CUSTOM/{$params.object_id}
+echo &quot;VPN Name : {$params.vpn_name}&quot; &gt; /tmp/VLAN_Database_CUSTOM/{$params.object_id}
+echo &quot;Status : {$params.status}&quot; &gt;&gt; /tmp/VLAN_Database_CUSTOM/{$params.object_id}</operation>
   </command>
   <command name="DELETE">
-    <operation>rm /tmp/VLAN_Database/{$params.object_id}</operation>
+    <operation>rm /tmp/VLAN_Database_CUSTOM/{$params.object_id}</operation>
   </command>
   <command name="READ"/>
   <command name="LIST"/>

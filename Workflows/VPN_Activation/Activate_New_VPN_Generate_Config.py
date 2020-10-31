@@ -21,7 +21,22 @@ er_list = context['er_list']
 if len(ce_list) != len(er_list):
   ret = MSA_API.process_content('FAILED', f'{ce_list} and {er_list} do not contain the same number of devices ', context, True)
   print(ret)
-  
+
+file_system_device_id = "125"
+
+# build the Microservice JSON params for the order
+micro_service_vars_array = {"object_id": context["vlan_id"],
+                           "vpn_name": context['vpn_name'],
+                           "status": "Allocated"
+                           }
+object_id = context["vlan_id"]
+
+vlan_database = {"VLAN_Database": {object_id: micro_service_vars_array}}
+
+# call the CREATE for simple_firewall MS for each device
+order = Order(file_system_device_id)
+order.command_execute('UPDATE', vlan_database)  
+
 for i in range(len(ce_list)):
   # extract the database ID for ce ID
   devicelongid=ce_list[i]['id'][-3:]

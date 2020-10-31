@@ -23,5 +23,5 @@ for i in range(len(ce_list)):
   headers = {'content-type': 'application/json'}
   r = requests.post(url, json=payload, headers=headers)
 
-ret = MSA_API.process_content('ENDED', f'VLAN {context["vpn_id"]} configured', context, True)
+ret = MSA_API.process_content('ENDED', f'VPN {context["vpn_id"]} configured', context, True)
 print(ret)

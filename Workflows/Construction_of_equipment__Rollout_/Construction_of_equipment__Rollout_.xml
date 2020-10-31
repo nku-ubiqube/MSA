@@ -17,7 +17,7 @@
   </variables>
   <example/>
   <process name="Process/Construction_of_equipment__Rollout_/Basic_configuration_of_new_ER_Edge_Router_">
-    <displayName>configure new ER</displayName>
+    <displayName>Configure New ER</displayName>
     <type>CREATE</type>
     <visibility>0</visibility>
     <task name="Basic_configuration_of_new_ER_Edge_Router__Config_generation.py">
@@ -58,15 +58,6 @@
       <displayName>Notification</displayName>
     </task>
   </process>
-  <process name="Process/Construction_of_equipment__Rollout_/Check">
-    <displayName>Check</displayName>
-    <type>UPDATE</type>
-    <visibility>0</visibility>
-    <task name="Check_Check.py">
-      <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
-      <displayName>Check</displayName>
-    </task>
-  </process>
   <process name="Process/Construction_of_equipment__Rollout_/Rollback_of_ER_establishment">
     <displayName>Rollback</displayName>
     <type>UPDATE</type>
@@ -87,6 +78,27 @@
     <task name="Delete_Delete_Instance.py">
       <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
       <displayName>Delete Instance</displayName>
+    </task>
+  </process>
+  <process name="Process/Construction_of_equipment__Rollout_/Configure_New_ER__CUSTOM_">
+    <displayName>Configure New ER (CUSTOM)</displayName>
+    <type>CREATE</type>
+    <visibility>0</visibility>
+    <task name="Configure_New_ER__CUSTOM__Config_generation__CUSTOM_.py">
+      <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
+      <displayName>Config generation (CUSTOM)</displayName>
+    </task>
+    <task name="Configure_New_ER__CUSTOM__Configuration__CUSTOM_.py">
+      <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
+      <displayName>Configuration (CUSTOM)</displayName>
+    </task>
+    <task name="Configure_New_ER__CUSTOM__Test__CUSTOM_.py">
+      <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
+      <displayName>Test (CUSTOM)</displayName>
+    </task>
+    <task name="Configure_New_ER__CUSTOM__Notification__CUSTOM_.py">
+      <processPath>/opt/fmc_repository/Process/Construction_of_equipment__Rollout_</processPath>
+      <displayName>Notification (CUSTOM)</displayName>
     </task>
   </process>
   <information>
