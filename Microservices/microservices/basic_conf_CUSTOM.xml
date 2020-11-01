@@ -5,7 +5,7 @@
     <displayField>object_id</displayField>
     <serviceTaskType/>
     <order>0</order>
-    <visibility>5</visibility>
+    <visibility>0</visibility>
     <configType>cli</configType>
     <createTemplateId/>
     <createTemplateObject/>
@@ -40,7 +40,6 @@
   <example/>
   <command name="IMPORT">
     <operation>cat /tmp/basic_CUSTOM.conf</operation>
-    <post_template></post_template>
     <parser>
       <section>
         <regexp>@router Name (?&lt;object_id&gt;\S+)@</regexp>
@@ -49,7 +48,7 @@
       <lines>
         <line>
           <array/>
-          <regexp>@ip address (?&lt;device_ip&gt;\S+) (?&lt;netmask&gt;\S+)@</regexp>
+          <regexp>@ip address (?&lt;device_ip&gt;\S+)[/]+(?&lt;prefix&gt;\S+)@</regexp>
           <xpath/>
         </line>
         <line>
