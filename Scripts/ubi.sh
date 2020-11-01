@@ -33,4 +33,4 @@ echo "--------------------------------------------------"
 
 # curl --insecure -H 'Accept: application/json' -H "Authorization: Bearer $key" -XGET https://127.0.0.1/ubi-api-rest/orchestration/BLRA6/service/instance/66 | python -m json.tool
 
-curl --insecure -H 'Accept: application/json' -H "Authorization: Bearer $key" -XGET https://127.0.0.1/ubi-api-rest/orchestration/service/variables/66 | python -m json.tool
+curl --insecure -H 'Accept: application/json' -H "Authorization: Bearer $key" -XGET https://127.0.0.1/ubi-api-rest/orchestration/v1/last-processes?ubiqubeId=BLRA6\&timeRange=50\&maxEntries=1 | python -m json.tool
