@@ -5,7 +5,7 @@
     <displayField>object_id</displayField>
     <serviceTaskType/>
     <order>0</order>
-    <visibility>0</visibility>
+    <visibility>5</visibility>
     <configType>cli</configType>
     <createTemplateId/>
     <createTemplateObject/>
@@ -60,15 +60,15 @@
     </parser>
   </command>
   <command name="UPDATE">
-    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic_CUSTOM.conf
-echo &quot;ip address {$params.device_ip}/{$params.prefix}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf
-echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf</operation>
+    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
+echo &quot;ip address {$params.device_ip}/{$params.prefix}&quot; &gt;&gt; /tmp/basic.conf
+echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic.conf</operation>
   </command>
   <command name="CONSTRAINT"/>
   <command name="CREATE">
-    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic_CUSTOM.conf
-echo &quot;ip address {$params.device_ip}/{$params.prefix}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf
-echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic_CUSTOM.conf</operation>
+    <operation>echo &quot;router Name {$params.object_id}&quot; &gt; /tmp/basic.conf
+echo &quot;ip address {$params.device_ip}/{$params.prefix}&quot; &gt;&gt; /tmp/basic.conf
+echo &quot;neighbor {$params.neighbor}&quot; &gt;&gt; /tmp/basic.conf</operation>
   </command>
   <command name="DELETE">
     <operation>echo &quot;&quot; &gt; /tmp/basic_CUSTOM.conf</operation>
