@@ -5,7 +5,7 @@
     <displayField>object_id</displayField>
     <serviceTaskType/>
     <order>0</order>
-    <visibility>5</visibility>
+    <visibility>0</visibility>
     <configType>cli</configType>
     <createTemplateId/>
     <createTemplateObject/>
@@ -48,7 +48,7 @@ JVM Version:    1.8.0_262-b10
 JVM Vendor:     Oracle Corporation</content>
   </example>
   <command name="IMPORT">
-    <operation>/opt/tomcat/bin/version.sh</operation>
+    <operation>sudo /opt/tomcat/bin/version.sh</operation>
     <parser>
       <section>
         <regexp>@Server version: Apache Tomcat[/](?&lt;object_id&gt;\S+)@</regexp>
