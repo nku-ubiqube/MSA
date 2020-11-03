@@ -21,9 +21,13 @@
     <displayName>Init File Upgrade</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
-    <task name="Init_File_Upgrade_Generate_test_command.py">
+    <task name="File_Upgrade_Generate_test_command.py">
       <processPath>/opt/fmc_repository/Process/File_Upgrade</processPath>
       <displayName>Generate test command</displayName>
+    </task>
+    <task name="File_Upgrade_File_Upgrade.py">
+      <processPath>/opt/fmc_repository/Process/File_Upgrade</processPath>
+      <displayName>File Upgrade</displayName>
     </task>
   </process>
   <process name="Process/File_Upgrade/Delete_Instance">
@@ -43,9 +47,9 @@
       <processPath>/opt/fmc_repository/Process/File_Upgrade</processPath>
       <displayName>Generate test command</displayName>
     </task>
-    <task name="File_Upgrade_File_Update_.py">
+    <task name="File_Upgrade_File_Upgrade.py">
       <processPath>/opt/fmc_repository/Process/File_Upgrade</processPath>
-      <displayName>File Update </displayName>
+      <displayName>File Upgrade</displayName>
     </task>
   </process>
   <information>
