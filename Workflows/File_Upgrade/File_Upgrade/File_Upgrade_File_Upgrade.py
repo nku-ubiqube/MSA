@@ -4,6 +4,7 @@ from msa_sdk.order import Order
 from msa_sdk import util
 import json
 
+
 dev_var = Variables()
 dev_var.add('name', var_type='String')
 dev_var.add('device.0.target', var_type='Device')
