@@ -45,8 +45,8 @@
 sudo cp /tmp/tomcat_repo/apache-tomcat-{$params.object_id}.tar.gz /opt
 cd /opt/
 sudo tar xvfz /opt/apache-tomcat-{$params.object_id}.tar.gz
-sudo ln -s /opt/apache-tomcat-{$params.object_id} /opt/tomcat
-sudo rm -f /opt/apache-tomcat-{$params.object_id}.tar.gz</operation>
+sudo rm -f /opt/apache-tomcat-{$params.object_id}.tar.gz
+sudo ln -s /opt/apache-tomcat-{$params.object_id} /opt/tomcat</operation>
   </command>
   <command name="CONSTRAINT"/>
   <command name="CREATE"/>
