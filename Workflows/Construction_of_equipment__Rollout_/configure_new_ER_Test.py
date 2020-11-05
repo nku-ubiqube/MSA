@@ -24,7 +24,7 @@ order = Order(str(dev))
 order.command_execute('IMPORT', pin)
 data = json.loads(order.content)
 if data['message']=='{}':
-  ret = MSA_API.process_content('FAIL', f'Cannot ping {dst}, invalid source IP: {src}' , context, True)
+  ret = MSA_API.process_content('FAILED', f'Cannot ping {dst}, invalid source IP: {src}' , context, True)
   print(ret)
 else:
   ms_list=json.loads(data['message'])['Ping']
